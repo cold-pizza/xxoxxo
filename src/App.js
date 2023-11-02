@@ -1,26 +1,18 @@
 import { useState } from "react";
 import onChange from "./onChange";
-import logo from "./logo.svg";
 import "./App.scss";
+import removeDuplication from "./removeDuplication";
 
 function App() {
     let [val, setVal] = useState({ value: "" });
-    let [result, setResult] = useState();
+    let [result, setResult] = useState([]);
 
-    const removeDupli = (text) => {
-        let temp = text.split(",");
-        for (let i = 0; i < temp.length; i++) {
-            temp[i] = temp[i].replace(/ /g, "");
-        }
-        const set = new Set(temp);
-        const results = [...set];
-        setResult(results.toString());
-    };
     return (
         <div className="App">
             <h2>키워드 중복제거</h2>
             <textarea
                 name="value"
+                value={val.value}
                 onChange={(e) => onChange(e, val, setVal)}
                 className="container"
                 cols="70"
@@ -28,7 +20,7 @@ function App() {
             ></textarea>
             <button
                 onClick={() => {
-                    removeDupli(val.value);
+                    removeDuplication(val.value, setResult, setVal);
                 }}
             >
                 중복제거
