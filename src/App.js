@@ -2,6 +2,7 @@ import { useState } from "react";
 import onChange from "./onChange";
 import "./App.scss";
 import removeDuplication from "./removeDuplication";
+import copyResult from "./copyResult";
 
 function App() {
     let [val, setVal] = useState({ value: "" });
@@ -33,6 +34,13 @@ function App() {
                 값 지우기
             </button>
             <h3>결과</h3>
+            <button
+                onClick={() => {
+                    copyResult(result);
+                }}
+            >
+                복사하기
+            </button>
             <p>{result}</p>
         </div>
     );
